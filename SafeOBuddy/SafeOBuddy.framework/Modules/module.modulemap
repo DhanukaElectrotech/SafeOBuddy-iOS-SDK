@@ -1,0 +1,4 @@
+framework module SafeOBuddy {
+  header "SafeOBuddy-Swift.h"
+  requires objc
+}
