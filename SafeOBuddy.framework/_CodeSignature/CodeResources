@@ -14,15 +14,15 @@
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		gOuXAsbE4TWE3VkLgLWNw9DJru0=
+		Zuc6HiUoNE1M8jHSooUxsA5sUKk=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		6Cy2Jww9lA5m7ate1SXL9IalNJ8=
+		0BlVNyg/Dtd5hHQzRdtQ95dgwDs=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		qINCFfxuNB1wHG4S39YgV9wRMP8=
+		VY5Y0LXCf8tec18APbIqRaDnT5U=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		qINCFfxuNB1wHG4S39YgV9wRMP8=
+		VY5Y0LXCf8tec18APbIqRaDnT5U=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		LXF4+gcL0p7urzC2hhZzgQ4D8b8=
+		8yjXz1jvsOTUHkDtsPrzVfe3HQc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -54,21 +54,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1n8vNgLioXyHvqB0fzCEb+7GGUwFiYalRUmb31iZur4=
+			upl6ap21aEIepGiJWuAdHXsFq1u0RQdzxzg4zHwXw6Y=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bKYkIKEiXjZHZSm/cOKFARSp3rMkyznU3X+UqQkOoHs=
+			7TNLnbh2+VWdrRpLTH8ReLBfOSi0LS+Dwcp7DNjnHyw=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bY5UcPR5sXh6u4FeU70UUZegr0PJUTr27LQwDKuJp0c=
+			4iMJRP7ALYjGJM6vA9Mi8saYlDKXjOJ6IdfnWqlC/5U=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -82,14 +82,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bY5UcPR5sXh6u4FeU70UUZegr0PJUTr27LQwDKuJp0c=
+			4iMJRP7ALYjGJM6vA9Mi8saYlDKXjOJ6IdfnWqlC/5U=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QsJLl4glmnRLIfEF9IOFThnRb3gDCgEfLcNmeF/PinA=
+			R/uVCIvzPZLN7VRVTUSxWCkdOqI2nUfFguiZvqU1zfo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -489,12 +489,12 @@ public enum Padding : SafeOBuddy.PaddingProtocol {
 @_hasMissingDesignatedInitializers public class Safeobuddy {
   public static func intializeSafeobuddy(complition: @escaping (_ message: Swift.String) -> Swift.Void)
   public static func authUser(email: Swift.String, password: Swift.String, complition: @escaping (_ response: [Swift.String : Any], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
-  public static func updateLockData(DeviceCode: Swift.String?, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
+  public static func updateDeviceData(DeviceCode: Swift.String?, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func getDeviceList(complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func getDeviceRecord(deviceName: Swift.String, deviceID: Swift.String, complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func getFilterDeviceRecord(deviceName: Swift.String, deviceID: Swift.String, fromDate: Swift.String, todayDate: Swift.String, complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func openLock(lockData: Swift.String?, deviceCode: Swift.String, deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
-  public static func closeLock(lockData: Swift.String?, deviceCode: Swift.String, deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
+  public static func closeLock(deviceCode: Swift.String, deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func logOutUser(complition: @escaping (_ message: Swift.String) -> Swift.Void)
   @objc deinit
 }
