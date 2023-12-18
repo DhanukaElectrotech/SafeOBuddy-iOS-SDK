@@ -14,27 +14,27 @@
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		Zuc6HiUoNE1M8jHSooUxsA5sUKk=
+		sPuhDQL+5bsDRVOQJEhL0Yr3ink=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		0BlVNyg/Dtd5hHQzRdtQ95dgwDs=
+		cK4i1gXNToiEQPfgd9ewD4syYJg=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		VY5Y0LXCf8tec18APbIqRaDnT5U=
+		fISzGzYmQna6cQv+8g5zCrwSSD0=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		peHc8eF3FqTlUPkZXgrANAb+YHA=
+		J8X7oGD8LJgFks4/LjL1nCSxtdo=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		VY5Y0LXCf8tec18APbIqRaDnT5U=
+		fISzGzYmQna6cQv+8g5zCrwSSD0=
 		</data>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		8yjXz1jvsOTUHkDtsPrzVfe3HQc=
+		px08svJsvNKUVbAv6tHEdk3lJNs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -54,42 +54,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			upl6ap21aEIepGiJWuAdHXsFq1u0RQdzxzg4zHwXw6Y=
+			Rx9SdKryRKvM9usnPoHbaiwlIdeBZYjsCoAy+a+/seE=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7TNLnbh2+VWdrRpLTH8ReLBfOSi0LS+Dwcp7DNjnHyw=
+			L6U5eft/YzgP03KSzIR0OtIVcypiaFKO27JUY+RmWxw=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4iMJRP7ALYjGJM6vA9Mi8saYlDKXjOJ6IdfnWqlC/5U=
+			ESnc24p1Ig5qK2bVSNncX8C7rWO3oCyFRaAwnFHfRes=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GCVS6zvixHecSqpHBr5m95bjJxWPJA4uCLu9m2NE3+w=
+			7TCGlRI2OHyzCI9SbzKsR0IujMKb1kxi9TE2n1D/ymk=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4iMJRP7ALYjGJM6vA9Mi8saYlDKXjOJ6IdfnWqlC/5U=
+			ESnc24p1Ig5qK2bVSNncX8C7rWO3oCyFRaAwnFHfRes=
 			</data>
 		</dict>
 		<key>Modules/SafeOBuddy.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			R/uVCIvzPZLN7VRVTUSxWCkdOqI2nUfFguiZvqU1zfo=
+			r7VujYj+3gmnPEjWJkNC52kvYUzEm7Y2MNKB9BVc+FM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

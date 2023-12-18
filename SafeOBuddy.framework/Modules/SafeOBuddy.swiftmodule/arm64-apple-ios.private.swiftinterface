@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
-// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name SafeOBuddy
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SafeOBuddy
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import CommonCrypto
 import Darwin
@@ -491,10 +491,10 @@ public enum Padding : SafeOBuddy.PaddingProtocol {
   public static func authUser(email: Swift.String, password: Swift.String, complition: @escaping (_ response: [Swift.String : Any], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func updateDeviceData(DeviceCode: Swift.String?, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func getDeviceList(complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
-  public static func getDeviceRecord(deviceName: Swift.String, deviceID: Swift.String, complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
-  public static func getFilterDeviceRecord(deviceName: Swift.String, deviceID: Swift.String, fromDate: Swift.String, todayDate: Swift.String, complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
-  public static func openLock(lockData: Swift.String?, deviceCode: Swift.String, deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
-  public static func closeLock(deviceCode: Swift.String, deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
+  public static func getDeviceRecord(deviceName: Swift.String, complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
+  public static func getFilterDeviceRecord(deviceName: Swift.String, fromDate: Swift.String, todayDate: Swift.String, complition: @escaping (_ respponse: [[Swift.String : Any]], _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
+  public static func openLock(deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
+  public static func closeLock(deviceName: Swift.String, complition: @escaping (_ respponse: Swift.String, _ message: Swift.String, _ statusCode: Swift.String) -> Swift.Void)
   public static func logOutUser(complition: @escaping (_ message: Swift.String) -> Swift.Void)
   @objc deinit
 }
