@@ -1,3 +1,5 @@
+
+
 # SafeOBuddy - iOS SDK Documentation
 
 ## Overview
@@ -22,7 +24,7 @@ Welcome to SafeOBuddy, the iOS SDK designed to empower you in managing digital l
 Add the following line to your app’s Pod file:
 
 ```
-pod 'SafeOBuddy', :git => https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git
+pod 'SafeOBuddy', :git => 'https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git'
 ```
 
 After running pod install, make sure to add import SafeOBuddy at the top of your class file.
@@ -68,7 +70,7 @@ Safeobuddy.getDeviceList { deviceList, message, statusCode in
 Lock records (default 30 days records):
 
 ```
-Safeobuddy.getDeviceRecord(deviceName: "your device Name", deviceID: "Your Device Id") { response, message, statusCode in
+Safeobuddy.getDeviceRecord(deviceName: "your device Name") { response, message, statusCode in
     if statusCode == 600 {
         print("Lock Records:", response)
     } else {
@@ -76,7 +78,7 @@ Safeobuddy.getDeviceRecord(deviceName: "your device Name", deviceID: "Your Devic
     }
 }
 
-Safeobuddy.getFilterDeviceRecord(deviceName: "Your Device Name", deviceID: "Your Device Name", fromDate: "mm/DD/yyyy", todayDate: "mm/DD/yyyy") { response, message, status in
+Safeobuddy.getFilterDeviceRecord(deviceName: "Your Device Name", fromDate: "mm/DD/yyyy", todayDate: "mm/DD/yyyy") { response, message, status in
     if status == 600 {
         print("Filtered Lock Records:", response)
     } else {
@@ -89,7 +91,7 @@ Safeobuddy.getFilterDeviceRecord(deviceName: "Your Device Name", deviceID: "Your
 ### 6. Open Lock
 
 ```
-Safeobuddy.openLock(lockData: "Your Device's LockData", deviceCode: "Your Device's Code", deviceName: "Your Device Name") { response, message, statusCode in
+Safeobuddy.openLock(deviceName: "Your Device Name") { response, message, statusCode in
     if statusCode == 600 {
         print("Lock opened successfully:", message)
     } else {
@@ -101,7 +103,7 @@ Safeobuddy.openLock(lockData: "Your Device's LockData", deviceCode: "Your Device
 ### 7. Close Lock
 
 ```
-Safeobuddy.closeLock(lockData: "Your Device's LockData", deviceCode: "Your Device's Code", deviceName: "Your Device Name") { response, message, statusCode in
+Safeobuddy.closeLock(deviceName: "Your Device Name") { response, message, statusCode in
     if statusCode == 600 {
         print("Lock closed successfully:", message)
     } else {
@@ -118,4 +120,6 @@ Safeobuddy.logout() { message in
     print("User logged out:", message)
 }
 ```
+
+
 

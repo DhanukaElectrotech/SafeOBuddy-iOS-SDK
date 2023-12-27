@@ -13210,7 +13210,7 @@
           {
             "kind": "Function",
             "name": "lockAction",
-            "printedName": "lockAction(action:lockData:deviceCode:deviceName:complition:)",
+            "printedName": "lockAction(action:lockData:deviceCode:deviceName:deviceID:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -13236,6 +13236,12 @@
                   }
                 ],
                 "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               },
               {
                 "kind": "TypeNominal",
@@ -13288,8 +13294,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name10complitionySo09TTControlE0V_SSSgS2SySS_S2StctF",
-            "mangledName": "$s10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name10complitionySo09TTControlE0V_SSSgS2SySS_S2StctF",
+            "usr": "s:10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name0H2ID10complitionySo09TTControlE0V_SSSgS3SySS_S2StctF",
+            "mangledName": "$s10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name0H2ID10complitionySo09TTControlE0V_SSSgS3SySS_S2StctF",
             "moduleName": "SafeOBuddy",
             "declAttributes": [
               "AccessControl"
@@ -14369,7 +14375,7 @@
           {
             "kind": "Function",
             "name": "updateDeviceData",
-            "printedName": "updateDeviceData(DeviceCode:complition:)",
+            "printedName": "updateDeviceData(deviceCode:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14378,17 +14384,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               },
               {
                 "kind": "TypeFunc",
@@ -14429,8 +14427,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy10SafeobuddyC16updateDeviceData0E4Code10complitionySSSg_ySS_S2StctFZ",
-            "mangledName": "$s10SafeOBuddy10SafeobuddyC16updateDeviceData0E4Code10complitionySSSg_ySS_S2StctFZ",
+            "usr": "s:10SafeOBuddy10SafeobuddyC16updateDeviceData10deviceCode10complitionySS_ySS_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC16updateDeviceData10deviceCode10complitionySS_ySS_S2StctFZ",
             "moduleName": "SafeOBuddy",
             "static": true,
             "declAttributes": [
@@ -14523,7 +14521,7 @@
           {
             "kind": "Function",
             "name": "getDeviceRecord",
-            "printedName": "getDeviceRecord(deviceName:complition:)",
+            "printedName": "getDeviceRecord(deviceCode:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14596,8 +14594,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy10SafeobuddyC15getDeviceRecord10deviceName10complitionySS_ySaySDySSypGG_S2StctFZ",
-            "mangledName": "$s10SafeOBuddy10SafeobuddyC15getDeviceRecord10deviceName10complitionySS_ySaySDySSypGG_S2StctFZ",
+            "usr": "s:10SafeOBuddy10SafeobuddyC15getDeviceRecord10deviceCode10complitionySS_ySaySDySSypGG_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC15getDeviceRecord10deviceCode10complitionySS_ySaySDySSypGG_S2StctFZ",
             "moduleName": "SafeOBuddy",
             "static": true,
             "declAttributes": [
@@ -14609,7 +14607,7 @@
           {
             "kind": "Function",
             "name": "getFilterDeviceRecord",
-            "printedName": "getFilterDeviceRecord(deviceName:fromDate:todayDate:complition:)",
+            "printedName": "getFilterDeviceRecord(deviceCode:fromDate:todayDate:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14694,8 +14692,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy10SafeobuddyC21getFilterDeviceRecord10deviceName8fromDate05todayK010complitionySS_S2SySaySDySSypGG_S2StctFZ",
-            "mangledName": "$s10SafeOBuddy10SafeobuddyC21getFilterDeviceRecord10deviceName8fromDate05todayK010complitionySS_S2SySaySDySSypGG_S2StctFZ",
+            "usr": "s:10SafeOBuddy10SafeobuddyC21getFilterDeviceRecord10deviceCode8fromDate05todayK010complitionySS_S2SySaySDySSypGG_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC21getFilterDeviceRecord10deviceCode8fromDate05todayK010complitionySS_S2SySaySDySSypGG_S2StctFZ",
             "moduleName": "SafeOBuddy",
             "static": true,
             "declAttributes": [
@@ -14707,7 +14705,7 @@
           {
             "kind": "Function",
             "name": "openLock",
-            "printedName": "openLock(deviceName:complition:)",
+            "printedName": "openLock(deviceCode:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14759,8 +14757,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy10SafeobuddyC8openLock10deviceName10complitionySS_ySS_S2StctFZ",
-            "mangledName": "$s10SafeOBuddy10SafeobuddyC8openLock10deviceName10complitionySS_ySS_S2StctFZ",
+            "usr": "s:10SafeOBuddy10SafeobuddyC8openLock10deviceCode10complitionySS_ySS_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC8openLock10deviceCode10complitionySS_ySS_S2StctFZ",
             "moduleName": "SafeOBuddy",
             "static": true,
             "declAttributes": [
@@ -14773,7 +14771,7 @@
           {
             "kind": "Function",
             "name": "closeLock",
-            "printedName": "closeLock(deviceName:complition:)",
+            "printedName": "closeLock(deviceCode:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14825,8 +14823,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy10SafeobuddyC9closeLock10deviceName10complitionySS_ySS_S2StctFZ",
-            "mangledName": "$s10SafeOBuddy10SafeobuddyC9closeLock10deviceName10complitionySS_ySS_S2StctFZ",
+            "usr": "s:10SafeOBuddy10SafeobuddyC9closeLock10deviceCode10complitionySS_ySS_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC9closeLock10deviceCode10complitionySS_ySS_S2StctFZ",
             "moduleName": "SafeOBuddy",
             "static": true,
             "declAttributes": [
