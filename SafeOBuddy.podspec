@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "SafeOBuddy"
-  s.version      = "1.0.10"
+  s.version      = "1.0.11"
   s.summary      = "It is a custom framework of Safeobuddy"
   s.description  = "It is a custom framework of Safeobuddy. This SDK is for digital locks"
 
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.swift_versions = "5.0"
 
-  s.source       = { :git => "https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git", :tag => "1.0.10" }
+  s.source       = { :git => "https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git", :tag => "1.0.11" }
 
  s.static_framework = true
 
