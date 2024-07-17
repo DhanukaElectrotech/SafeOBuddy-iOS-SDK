@@ -48792,6 +48792,83 @@
           },
           {
             "kind": "Function",
+            "name": "openLockWithData",
+            "printedName": "openLockWithData(deviceData:macId:deviceCode:complition:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.String, Swift.String, Swift.String) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.String, Swift.String, Swift.String)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SafeOBuddy10SafeobuddyC16openLockWithData06deviceG05macId0H4Code10complitionySS_S2SySS_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC16openLockWithData06deviceG05macId0H4Code10complitionySS_S2SySS_S2StctFZ",
+            "moduleName": "SafeOBuddy",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "closeLock",
             "printedName": "closeLock(deviceCode:complition:)",
             "children": [
@@ -48857,6 +48934,83 @@
           },
           {
             "kind": "Function",
+            "name": "closeLockWithData",
+            "printedName": "closeLockWithData(deviceData:macId:deviceCode:complition:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.String, Swift.String, Swift.String) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.String, Swift.String, Swift.String)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SafeOBuddy10SafeobuddyC17closeLockWithData06deviceG05macId0H4Code10complitionySS_S2SySS_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC17closeLockWithData06deviceG05macId0H4Code10complitionySS_S2SySS_S2StctFZ",
+            "moduleName": "SafeOBuddy",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "logOutUser",
             "printedName": "logOutUser(complition:)",
             "children": [
@@ -48892,6 +49046,28 @@
             "declAttributes": [
               "Final",
               "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "validate",
+            "printedName": "validate()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SafeOBuddy10SafeobuddyC8validateSbyFZ",
+            "mangledName": "$s10SafeOBuddy10SafeobuddyC8validateSbyFZ",
+            "moduleName": "SafeOBuddy",
+            "static": true,
+            "declAttributes": [
+              "Final"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -49903,7 +50079,7 @@
           {
             "kind": "Function",
             "name": "getLockDataAPI",
-            "printedName": "getLockDataAPI(lockID:complition:)",
+            "printedName": "getLockDataAPI(lockID:isOpenWithData:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -49923,6 +50099,12 @@
                   }
                 ],
                 "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeFunc",
@@ -49963,8 +50145,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy7TTLocksV14getLockDataAPI6lockID10complitionySSSg_ySS_S2StctF",
-            "mangledName": "$s10SafeOBuddy7TTLocksV14getLockDataAPI6lockID10complitionySSSg_ySS_S2StctF",
+            "usr": "s:10SafeOBuddy7TTLocksV14getLockDataAPI6lockID010isOpenWithF010complitionySSSg_SbySS_S2StctF",
+            "mangledName": "$s10SafeOBuddy7TTLocksV14getLockDataAPI6lockID010isOpenWithF010complitionySSSg_SbySS_S2StctF",
             "moduleName": "SafeOBuddy",
             "declAttributes": [
               "AccessControl"
@@ -50049,7 +50231,7 @@
           {
             "kind": "Function",
             "name": "lockAction",
-            "printedName": "lockAction(action:lockData:deviceCode:deviceName:deviceID:gpsDeviceCode:complition:)",
+            "printedName": "lockAction(action:lockData:deviceCode:deviceName:deviceID:gpsDeviceCode:isOpenWithData:complition:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -50101,6 +50283,12 @@
                 "usr": "s:SS"
               },
               {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
                 "kind": "TypeFunc",
                 "name": "Function",
                 "printedName": "(Swift.String, Swift.String, Swift.String) -> ()",
@@ -50139,8 +50327,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name0H2ID09gpsDeviceI010complitionySo09TTControlE0V_SSSgS4SySS_S2StctF",
-            "mangledName": "$s10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name0H2ID09gpsDeviceI010complitionySo09TTControlE0V_SSSgS4SySS_S2StctF",
+            "usr": "s:10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name0H2ID09gpsDeviceI0010isOpenWithG010complitionySo09TTControlE0V_SSSgS4SSbySS_S2StctF",
+            "mangledName": "$s10SafeOBuddy7TTLocksV10lockAction6action0D4Data10deviceCode0H4Name0H2ID09gpsDeviceI0010isOpenWithG010complitionySo09TTControlE0V_SSSgS4SSbySS_S2StctF",
             "moduleName": "SafeOBuddy",
             "declAttributes": [
               "AccessControl"
@@ -50204,6 +50392,91 @@
             "usr": "s:10SafeOBuddy7TTLocksV22uploadLockUnlockRecord10deviceCode0H4Name09gpsDeviceI06action10complitionySS_S3SySbctF",
             "mangledName": "$s10SafeOBuddy7TTLocksV22uploadLockUnlockRecord10deviceCode0H4Name09gpsDeviceI06action10complitionySS_S3SySbctF",
             "moduleName": "SafeOBuddy",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getDeviceDetails",
+            "printedName": "getDeviceDetails(deviceCode:complition:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "([[Swift.String : Any]], Swift.String, Swift.String) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "([[Swift.String : Any]], Swift.String, Swift.String)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[[Swift.String : Any]]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Dictionary",
+                            "printedName": "[Swift.String : Any]",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "Any"
+                              }
+                            ],
+                            "usr": "s:SD"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SafeOBuddy7TTLocksV16getDeviceDetails10deviceCode10complitionySS_ySaySDySSypGG_S2StctFZ",
+            "mangledName": "$s10SafeOBuddy7TTLocksV16getDeviceDetails10deviceCode10complitionySS_ySaySDySSypGG_S2StctFZ",
+            "moduleName": "SafeOBuddy",
+            "static": true,
             "declAttributes": [
               "AccessControl"
             ],
