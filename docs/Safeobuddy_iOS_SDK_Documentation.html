@@ -1,0 +1,457 @@
+<title>Safeobuddy iOS SDK Documentation</title>
+
+<style>
+  :root {
+    --ink: #000;
+    --heading: #1f6fc4;
+    --link: #4a72b8;
+    --rule: #b8b8b8;
+    --codebg: #f6f7f9;
+    --tablehead: #eceff3;
+  }
+
+  body {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-size: 11.5pt;
+    line-height: 1.45;
+    color: var(--ink);
+    background: #fff;
+    max-width: 7.3in;
+    margin: 0 auto;
+    padding: 0.55in 0.2in 0.75in;
+  }
+
+  /* ---- running header / footer (Chrome repeats these when printing) ---- */
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 6px;
+    margin-bottom: 26px;
+  }
+  /* Official DPL monogram, extracted from the Android SDK document so both
+     documents carry a pixel-identical mark. */
+  .logo {
+    width: 46px;
+    height: auto;
+    display: block;
+    flex: none;
+  }
+  .company { font-size: 13pt; }
+
+  .page-footer {
+    margin-top: 40px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule);
+    font-size: 8pt;
+    color: #666;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 21pt;
+    font-weight: bold;
+    margin: 40px 0 34px;
+  }
+  h2 {
+    color: var(--heading);
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 30px 0 10px;
+  }
+  h3 {
+    font-size: 11.5pt;
+    font-weight: bold;
+    margin: 20px 0 8px;
+  }
+  h2.toc-heading {
+    color: #1a3a6b;
+    font-size: 13pt;
+    text-decoration: underline;
+    margin-bottom: 10px;
+  }
+
+  ol, ul { margin: 6px 0 6px 0; padding-left: 26px; }
+  li { margin: 3px 0; }
+  .toc a { color: var(--link); text-decoration: none; }
+
+  code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 10pt;
+  }
+  pre {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.5pt;
+    line-height: 1.4;
+    background: var(--codebg);
+    border: 1px solid #e2e5ea;
+    border-radius: 3px;
+    padding: 9px 11px;
+    margin: 8px 0 12px;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 8px 0 16px;
+    font-size: 10.5pt;
+  }
+  th, td {
+    border: 1px solid #7a7a7a;
+    padding: 5px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--tablehead); font-weight: bold; }
+  td.code-col { width: 26%; font-family: Consolas, "Courier New", monospace; font-size: 9.5pt; }
+
+  .note {
+    border-left: 3px solid var(--heading);
+    background: #f4f8fd;
+    padding: 8px 12px;
+    margin: 12px 0;
+    font-size: 10.5pt;
+  }
+  .warn {
+    border-left: 3px solid #b8860b;
+    background: #fdf9ef;
+    padding: 8px 12px;
+    margin: 12px 0;
+    font-size: 10.5pt;
+  }
+
+  .url { font-family: Consolas, "Courier New", monospace; font-size: 9pt; word-break: break-all; color: var(--link); }
+
+  @media print {
+    body { padding: 0; max-width: none; }
+    h2 { page-break-after: avoid; }
+    pre, table { page-break-inside: avoid; }
+    .page-break { page-break-before: always; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #e8e8e8; --codebg: #1c1f24; --tablehead: #24282e; --rule: #444; }
+    body { background: #14161a; }
+    pre { border-color: #2c3138; }
+    th, td { border-color: #4a4f57; }
+    .note { background: #16202c; }
+    .warn { background: #241f14; }
+    /* the mark is dark red on transparent — give it a light plate on dark UI */
+    .logo { background: #fff; padding: 3px; border-radius: 2px; }
+  }
+  :root[data-theme="dark"] {
+    --ink: #e8e8e8; --codebg: #1c1f24; --tablehead: #24282e; --rule: #444;
+  }
+  :root[data-theme="dark"] body { background: #14161a; }
+  :root[data-theme="dark"] pre { border-color: #2c3138; }
+  :root[data-theme="dark"] th, :root[data-theme="dark"] td { border-color: #4a4f57; }
+  :root[data-theme="dark"] .note { background: #16202c; }
+  :root[data-theme="dark"] .warn { background: #241f14; }
+  :root[data-theme="dark"] .logo { background: #fff; padding: 3px; border-radius: 2px; }
+  :root[data-theme="light"] { --ink: #000; --codebg: #f6f7f9; --tablehead: #eceff3; --rule: #b8b8b8; }
+  :root[data-theme="light"] body { background: #fff; }
+</style>
+
+<div class="page-header">
+  <img class="logo" src="data:image/png;base64,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" alt="Dhanuka Electrotech Pvt. Ltd.">
+  <span class="company">Dhanuka Electrotech Pvt. Ltd.</span>
+</div>
+
+<h1>Safeobuddy iOS SDK Documentation</h1>
+
+<h2 class="toc-heading">Table of Contents:-</h2>
+<ol class="toc">
+  <li><a href="#implementation">Implementation</a></li>
+  <li><a href="#initialization">Initialization</a></li>
+  <li><a href="#authorization">Authorization</a></li>
+  <li><a href="#device-list">Device List</a></li>
+  <li><a href="#open-lock">Open Lock</a></li>
+  <li><a href="#close-lock">Close Lock</a></li>
+  <li><a href="#lock-records">Lock Records</a></li>
+  <li><a href="#logout">Logout User</a></li>
+  <li><a href="#v7">V7 Locks &mdash; Direct BLE Control</a></li>
+  <li><a href="#response-codes">Response Codes</a></li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2 id="implementation">1. Implementation</h2>
+
+<h3>Environment (minimum requirements)</h3>
+<ul>
+  <li>Xcode 14.0, iOS 13.0, Swift 5.0</li>
+</ul>
+
+<div class="warn">
+  <strong>Device builds only.</strong> <code>SafeOBuddy.framework</code> ships an
+  <code>arm64</code> device slice only. It does <strong>not</strong> contain a Simulator
+  architecture, so the SDK can be built and tested on a physical iPhone only.
+</div>
+
+<h3>Installation</h3>
+<ul>
+  <li>Add the following line to your app&rsquo;s Podfile:</li>
+</ul>
+<pre>pod 'SafeOBuddy', :git =&gt; 'https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git'</pre>
+<ul>
+  <li>Run <code>pod install</code>, then add the import to every file that uses the SDK:</li>
+</ul>
+<pre>import SafeOBuddy</pre>
+
+<h3>Permissions</h3>
+<ul>
+  <li>Ensure Bluetooth is enabled on the device.</li>
+  <li>Add the following keys to your app&rsquo;s <code>Info.plist</code>:
+    <ul>
+      <li>Privacy &mdash; Bluetooth Peripheral Usage Description
+        (<code>NSBluetoothPeripheralUsageDescription</code>)</li>
+      <li>Privacy &mdash; Bluetooth Always Usage Description
+        (<code>NSBluetoothAlwaysUsageDescription</code>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Get Device List API</h3>
+<p class="url">https://vehicletrack.membocool.com/ConService.aspx?method=vehdatawithlock&amp;uid=&ldquo;USERNAME&rdquo;&amp;pwd=&rdquo;PASSWORD&rdquo;&amp;vno=</p>
+
+<div class="note">
+  <strong>Note on method names.</strong> Two SDK symbols are spelled as shown below and
+  must be typed exactly, or the code will not compile:
+  <code>intializeSafeobuddy</code> (not <em>initialize</em>) and the closure argument
+  label <code>complition</code> (not <em>completion</em>). Both are omitted when using
+  Swift trailing-closure syntax, as in all examples in this document.
+</div>
+
+<h2 id="initialization">2. Initialization</h2>
+<ul>
+  <li>Initialize the SDK in your <code>AppDelegate</code>, inside
+      <code>didFinishLaunchingWithOptions</code>:</li>
+</ul>
+<pre>Safeobuddy.intializeSafeobuddy { message in
+    print("SDK initialized:", message)
+}</pre>
+
+<h2 id="authorization">3. Authorization</h2>
+<ul>
+  <li>Authorize the SDK after initialization:</li>
+</ul>
+<pre>Safeobuddy.authUser(email: "USERNAME", password: "PASSWORD") { message, statusCode in
+    if statusCode == "600" {
+        print("Authorization successful")
+    } else {
+        print("Authorization failed:", message)
+    }
+}</pre>
+
+<div class="note">
+  <code>statusCode</code> is a <code>String</code> in every callback, not an
+  <code>Int</code>. Always compare against a quoted value &mdash;
+  <code>statusCode == "600"</code>.
+</div>
+
+<h2 id="device-list">4. Device List</h2>
+<pre>Safeobuddy.getDeviceList { response, message, statusCode in
+    if statusCode == "600" {
+        print("Device list:", response)   // [[String: Any]]
+    } else {
+        print("Failed to fetch device list:", message)
+    }
+}</pre>
+
+<h2 id="open-lock">5. Open Lock</h2>
+<ul>
+  <li>Open a lock by device code:</li>
+</ul>
+<pre>Safeobuddy.openLock(deviceCode: "YOUR DEVICE CODE") { response, message, statusCode in
+    if statusCode == "600" {
+        print("Lock opened successfully:", message)
+    } else {
+        print("Failed to open lock:", message)
+    }
+}</pre>
+<ul>
+  <li>Open a lock when the lock data and MAC are already held by the app
+      (skips the lookup call):</li>
+</ul>
+<pre>Safeobuddy.openLockWithData(deviceData: "LOCK DATA",
+                            macId: "MAC ID",
+                            deviceCode: "YOUR DEVICE CODE") { response, message, statusCode in
+    print(statusCode, message)
+}</pre>
+
+<h2 id="close-lock">6. Close Lock</h2>
+<pre>Safeobuddy.closeLock(deviceCode: "YOUR DEVICE CODE") { response, message, statusCode in
+    if statusCode == "600" {
+        print("Lock closed successfully:", message)
+    } else {
+        print("Failed to close lock:", message)
+    }
+}</pre>
+<pre>Safeobuddy.closeLockWithData(deviceData: "LOCK DATA",
+                             macId: "MAC ID",
+                             deviceCode: "YOUR DEVICE CODE") { response, message, statusCode in
+    print(statusCode, message)
+}</pre>
+
+<h2 id="lock-records">7. Lock Records</h2>
+<ul>
+  <li>Retrieve lock records (default: last 30 days):</li>
+</ul>
+<pre>Safeobuddy.getDeviceRecord(deviceCode: "YOUR DEVICE CODE") { response, message, statusCode in
+    if statusCode == "600" {
+        print("Lock records:", response)   // [[String: Any]]
+    } else {
+        print("Failed to fetch lock records:", message)
+    }
+}</pre>
+<ul>
+  <li>Retrieve lock records for a date range (<code>MM/dd/yyyy</code>):</li>
+</ul>
+<pre>Safeobuddy.getFilterDeviceRecord(deviceCode: "YOUR DEVICE CODE",
+                                 fromDate: "MM/dd/yyyy",
+                                 todayDate: "MM/dd/yyyy") { response, message, statusCode in
+    if statusCode == "600" {
+        print("Filtered lock records:", response)
+    } else {
+        print("Failed to fetch filtered lock records:", message)
+    }
+}</pre>
+
+<h2 id="logout">8. Logout User</h2>
+<pre>Safeobuddy.logOutUser { message in
+    print("User logged out:", message)
+}</pre>
+
+<div class="page-break"></div>
+
+<h2 id="v7">9. V7 Locks &mdash; Direct BLE Control</h2>
+
+<p>V7 locks are not driven through the lock-vendor cloud. The app talks to the lock
+directly over Bluetooth Low Energy: a 7-byte command packet is derived from the lock&rsquo;s
+MAC address and written to the lock&rsquo;s writable characteristic. This is the iOS
+counterpart of <code>manualLockAction(lockId, 71 / 70)</code> in the Android SDK.</p>
+
+<h3>9.1 Installation</h3>
+<p>The V7 path ships as a separate pod. Add it alongside the main pod:</p>
+<pre>pod 'SafeOBuddy',   :git =&gt; 'https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git'
+pod 'SafeOBuddyV7', :git =&gt; 'https://github.com/DhanukaElectrotech/SafeOBuddy-iOS-SDK.git'</pre>
+<pre>import SafeOBuddyV7</pre>
+<p>Requires <code>NSBluetoothAlwaysUsageDescription</code> in <code>Info.plist</code>.
+No location permission is required on iOS.</p>
+
+<h3>9.2 Obtaining the Lock MAC</h3>
+<p><code>macId</code> is the lock&rsquo;s Bluetooth MAC address. For V7 locks it is the
+<strong><code>LockCode</code></strong> field returned by the lock-MAC-details service:</p>
+<p class="url">https://vehicletrack.membocool.com/ConService.aspx?method=getlockmacdetails&amp;lockid=&lt;BT LOCK ID&gt;&amp;contactid=&lt;USER ID&gt;&amp;token=&lt;ACCESS TOKEN&gt;</p>
+<p>The response carries <code>LockId</code>, <code>LockCode</code>, <code>MacId</code>
+and <code>Lockdata</code>. <code>&lt;BT LOCK ID&gt;</code> is the <code>btlockid</code>
+value from the device list (section 4).</p>
+
+<div class="warn">
+  <strong>Use <code>LockCode</code>, not <code>MacId</code>.</strong> For V7 locks the
+  Bluetooth MAC is the <code>LockCode</code> field. The two fields are used the opposite
+  way round for standard (non-V7) locks. Passing <code>MacId</code> to a V7 lock builds
+  an incorrect command packet and the lock will not respond &mdash; and because the
+  command is sent without acknowledgement, the call will still report success.
+</div>
+
+<h3>9.3 Open Lock</h3>
+<pre>SafeobuddyV7.openLock(macId: "5C:53:10:4F:37:AE") { result in
+    if result.isSuccess {                 // result.code == "106"
+        print(result.message)             // "Lock opened successfully."
+    } else {
+        print(result.code, result.message)
+    }
+}</pre>
+
+<h3>9.4 Close Lock</h3>
+<pre>SafeobuddyV7.closeLock(macId: "5C:53:10:4F:37:AE") { result in
+    print(result.code, result.message, result.type)
+}</pre>
+
+<p>To follow connection progress, pass an optional status handler:</p>
+<pre>SafeobuddyV7.openLock(macId: mac, onStatus: { status in
+    print(status)   // "Connecting…", "Sending command…", …
+}) { result in
+    print(result.message)
+}</pre>
+
+<h3>9.5 Command Packet</h3>
+<p>The packet is identical to the Android implementation. The MAC is byte-reversed,
+the first 6 bytes are taken, and the command byte is appended &mdash;
+<code>0x55</code> to open, <code>0x4C</code> to lock:</p>
+<pre>MAC     5C:53:10:4F:37:AE
+
+Open    AE 37 4F 10 53 5C 55
+Lock    AE 37 4F 10 53 5C 4C</pre>
+
+<h3>9.6 Locating the Lock</h3>
+<div class="note">
+  Android connects directly to a MAC address. iOS provides no equivalent API &mdash;
+  CoreBluetooth never exposes a peripheral&rsquo;s MAC. The SDK therefore scans and
+  matches the MAC against each advertisement (manufacturer data, service data and
+  advertised name, in both byte orders). The first match is cached, so later opens
+  connect immediately without scanning.
+  <br><br>
+  If the lock firmware does not publish its MAC in the advertisement, resolve the
+  peripheral once through your own scan UI and register it:
+</div>
+<pre>SafeobuddyV7.manager.startScan { peripheral, advertisementData, rssi in
+    // present the list and let the user select the lock
+}
+
+SafeobuddyV7.manager.register(macAddress: mac,
+                              peripheralIdentifier: peripheral.identifier)</pre>
+
+<h3>9.7 Using V7 Alongside the Standard Flow</h3>
+<p>The V7 module and the main SDK each drive an independent Bluetooth central manager.
+They do not share state, storage or delegates, but they do share the device radio.
+Nothing is started until a V7 method is called for the first time.</p>
+<ul>
+  <li>Do not run a V7 action and a standard <code>openLock</code> / <code>closeLock</code>
+      at the same time. Check <code>SafeobuddyV7.isBusy</code> first if both paths can be
+      triggered from the same screen.</li>
+  <li>Call <code>SafeobuddyV7.shutdown()</code> when leaving a V7 screen to release the
+      radio back to the standard flow.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2 id="response-codes">10. Response Codes</h2>
+
+<h3>A. Standard flow &mdash; authUser, getDeviceList, getDeviceRecord, getFilterDeviceRecord, openLock, closeLock</h3>
+<p>Every callback in the standard flow returns <code>statusCode</code> as a
+<code>String</code>.</p>
+<table>
+  <tr><th style="width:26%">Status Code</th><th>Description</th></tr>
+  <tr><td class="code-col">"600"</td><td>Success</td></tr>
+  <tr><td class="code-col">Any other value</td><td>Error. The accompanying <code>message</code> parameter carries the reason returned by the server or the lock.</td></tr>
+</table>
+
+<h3>B. V7 flow &mdash; SafeobuddyV7.openLock / closeLock</h3>
+<p>The V7 result codes match the Android SDK&rsquo;s <code>onSafeLockAction</code> values
+exactly, so result handling can be shared between the two platforms.</p>
+<table>
+  <tr><th style="width:26%">Status Code</th><th>Description</th></tr>
+  <tr><td class="code-col">106</td><td>Success Code: Success</td></tr>
+  <tr><td class="code-col">100</td><td>Error: Failed to lock the device for <code>type = "close lock"</code>, or invalid device information (missing / malformed MAC)</td></tr>
+  <tr><td class="code-col">102</td><td>Error: Failed to open the lock for <code>type = "open lock"</code></td></tr>
+</table>
+
+<p>The <code>type</code> field is <code>"open lock"</code> or <code>"close lock"</code>,
+matching Android.</p>
+
+<h3>C. V7 result object</h3>
+<table>
+  <tr><th style="width:26%">Property</th><th>Description</th></tr>
+  <tr><td class="code-col">code</td><td><code>String</code> &mdash; status code from the table above</td></tr>
+  <tr><td class="code-col">message</td><td><code>String</code> &mdash; human-readable result message</td></tr>
+  <tr><td class="code-col">type</td><td><code>String</code> &mdash; <code>"open lock"</code> or <code>"close lock"</code></td></tr>
+  <tr><td class="code-col">isSuccess</td><td><code>Bool</code> &mdash; convenience for <code>code == "106"</code></td></tr>
+</table>
+
+<div class="page-footer">
+  Dhanuka Electrotech Pvt. Ltd. || Confidential Document | Safeobuddy SDK
+</div>

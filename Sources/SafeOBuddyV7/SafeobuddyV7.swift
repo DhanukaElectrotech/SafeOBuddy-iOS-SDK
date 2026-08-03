@@ -63,7 +63,83 @@ public enum SafeobuddyV7 {
     /// Receives the MAC and the same status strings Android sends.
     public static var onLockStatusUpdate: ((_ macId: String, _ status: String) -> Void)?
 
-    // MARK: - Public API
+    // MARK: - Configuration
+
+    /// Supplies the session the lock-details lookup needs.
+    ///
+    /// Call once after a successful login, before `manualLockAction`.
+    ///
+    /// - Parameters:
+    ///   - contactId: the `uid` from the login response.
+    ///   - accessToken: the `token` from the login response.
+    ///
+    /// Android reads both from `UserSessions` inside the SDK, so its client
+    /// never supplies them. `SafeOBuddy.framework` keeps the same values but
+    /// does not expose them, so they must be handed in here until the V7
+    /// methods can be moved inside the framework itself.
+    public static func configure(contactId: String, accessToken: String) {
+        LockInfoService.contactId = contactId
+        LockInfoService.accessToken = accessToken
+    }
+
+    /// `true` once ``configure(contactId:accessToken:)`` has been called with
+    /// non-empty values.
+    public static var isConfigured: Bool { LockInfoService.isConfigured }
+
+    // MARK: - Public API (lock id — the Android-equivalent entry point)
+
+    /// Opens or closes a V7 lock from its **BT lock id**, resolving the MAC
+    /// internally. Direct counterpart of the Android SDK's
+    /// `mSafeLock.manualLockAction("Your BT Lock Id", 71)`.
+    ///
+    /// The SDK performs the `getlockmacdetails` lookup itself, reads the
+    /// `LockCode` field (the V7 MAC), and then drives the BLE write — so the
+    /// host app never handles a MAC address.
+    ///
+    /// - Parameters:
+    ///   - lockId: the BT lock id, exactly as passed on Android.
+    ///   - type: `71` to open, `70` to close — the same constants Android uses.
+    ///   - onStatus: optional progress messages.
+    ///   - completion: called once, on the main queue.
+    public static func manualLockAction(lockId: String,
+                                        type: Int,
+                                        onStatus: ((String) -> Void)? = nil,
+                                        completion: @escaping (LockActionResult) -> Void) {
+        guard let action = Action(rawValue: type) else {
+            deliver(LockActionResult(code: "100",
+                                     message: "Invalid action type \(type). Use 71 to open or 70 to close.",
+                                     type: "open lock"),
+                    completion)
+            return
+        }
+        manualLockAction(lockId: lockId, action: action, onStatus: onStatus, completion: completion)
+    }
+
+    /// Type-safe form of ``manualLockAction(lockId:type:onStatus:completion:)``.
+    public static func manualLockAction(lockId: String,
+                                        action: Action,
+                                        onStatus: ((String) -> Void)? = nil,
+                                        completion: @escaping (LockActionResult) -> Void) {
+        let type = action.type
+
+        onStatus?("Fetching lock details…")
+        LockInfoService.fetchLockInfo(lockId: lockId) { result in
+            switch result {
+            case .success(let info):
+                // Android: for V7 actions `MACID = LockCode` (SafeLock.java:223-253).
+                perform(action, macId: info.v7MacAddress, onStatus: onStatus, completion: completion)
+
+            case .failure(let error):
+                // Mirrors Android's `validateDevice` returning null.
+                deliver(LockActionResult(code: "100",
+                                         message: error.localizedDescription,
+                                         type: type),
+                        completion)
+            }
+        }
+    }
+
+    // MARK: - Public API (MAC known)
 
     /// Opens a V7 lock over BLE. Counterpart of `SafeLock.openV7Lock(_:deviceCode:)`.
     ///
