@@ -1,0 +1,13 @@
+# Generated documentation artifacts.
+# The HTML sources and PDFs are produced locally and shared directly with
+# clients — they are not part of the SDK and should not be committed.
+docs/*.pdf
+docs/*.zip
+docs/*.html
+docs/*.png
+
+# Handover bundles
+*_Handover.zip
+
+# macOS
+.DS_Store

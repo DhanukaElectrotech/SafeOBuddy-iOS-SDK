@@ -74,8 +74,17 @@ public enum LockInfoService {
 
     // MARK: Lookup
 
-    /// Fetches lock details for a BT lock id and returns the first row that
+    /// Fetches lock details for a device code and returns the first row that
     /// carries a usable `LockCode`.
+    ///
+    /// - Parameter lockId: **the `DeviceCode` from `getDeviceList`.** Android
+    ///   calls this value "BT Lock Id", "Device Code" and `lockid` in different
+    ///   places, but they are all the same field — `manualLockAction` assigns
+    ///   `deviceCode = lockId` before passing it straight through as `lockid`
+    ///   (`SafeLock.java:488-490`).
+    ///
+    /// The MAC is **not** part of the device list response; it only ever comes
+    /// from this endpoint.
     ///
     /// Android applies the same filter for V7 actions: it keeps only rows where
     /// `isValidString(getLockCode())`, then uses that value as the MAC.

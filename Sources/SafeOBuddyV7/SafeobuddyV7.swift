@@ -24,8 +24,23 @@ public enum SafeobuddyV7 {
         public let message: String
         /// `"open lock"` or `"close lock"`.
         public let type: String
+        /// The MAC the action was performed against, once resolved.
+        public let macId: String
+        /// The 7 bytes written to the lock, as spaced hex — e.g.
+        /// `"e8 94 9a 62 32 dc 55"`. Empty when the action failed before a
+        /// packet could be built. Useful for verifying against Android logs.
+        public let packetHex: String
 
         public var isSuccess: Bool { code == "106" }
+
+        init(code: String, message: String, type: String,
+             macId: String = "", packetHex: String = "") {
+            self.code = code
+            self.message = message
+            self.type = type
+            self.macId = macId
+            self.packetHex = packetHex
+        }
     }
 
     /// The Android `actionType` constants for the V7 path.
@@ -63,9 +78,43 @@ public enum SafeobuddyV7 {
     /// Receives the MAC and the same status strings Android sends.
     public static var onLockStatusUpdate: ((_ macId: String, _ status: String) -> Void)?
 
-    // MARK: - Configuration
+    // MARK: - Step 1: Login
+
+    /// Logs in and stores the session, so no separate `configure` call is needed.
+    /// Counterpart of the Android SDK's `mSafeLock.authUser(...)`.
+    ///
+    /// On success, `uid` and `token` from the login response are captured and
+    /// applied automatically — every later call is then authorised.
+    ///
+    /// ```swift
+    /// SafeobuddyV7.login(username: "USERNAME", password: "PASSWORD") { result in
+    ///     switch result {
+    ///     case .success(let session): print("uid:", session.userId)
+    ///     case .failure(let error):   print("login failed:", error.localizedDescription)
+    ///     }
+    /// }
+    /// ```
+    public static func login(username: String,
+                             password: String,
+                             completion: @escaping (Result<SafeobuddySession, AuthError>) -> Void) {
+        AuthService.login(username: username, password: password) { result in
+            if Thread.isMainThread { completion(result) }
+            else { DispatchQueue.main.async { completion(result) } }
+        }
+    }
+
+    /// The session captured by the most recent successful ``login(username:password:completion:)``.
+    public static var session: SafeobuddySession? { AuthService.session }
+
+    /// Clears the stored session.
+    public static func logout() { AuthService.logout() }
+
+    // MARK: - Configuration (only if you already hold the session)
 
     /// Supplies the session the lock-details lookup needs.
+    ///
+    /// Not required when ``login(username:password:completion:)`` is used — that
+    /// captures and applies these values itself.
     ///
     /// Call once after a successful login, before `manualLockAction`.
     ///
@@ -97,7 +146,8 @@ public enum SafeobuddyV7 {
     /// host app never handles a MAC address.
     ///
     /// - Parameters:
-    ///   - lockId: the BT lock id, exactly as passed on Android.
+    ///   - lockId: **the `DeviceCode` from `Safeobuddy.getDeviceList`.** Android
+    ///     calls the same value "BT Lock Id" and "Device Code" interchangeably.
     ///   - type: `71` to open, `70` to close — the same constants Android uses.
     ///   - onStatus: optional progress messages.
     ///   - completion: called once, on the main queue.
@@ -122,19 +172,31 @@ public enum SafeobuddyV7 {
                                         completion: @escaping (LockActionResult) -> Void) {
         let type = action.type
 
-        onStatus?("Fetching lock details…")
-        LockInfoService.fetchLockInfo(lockId: lockId) { result in
-            switch result {
-            case .success(let info):
-                // Android: for V7 actions `MACID = LockCode` (SafeLock.java:223-253).
-                perform(action, macId: info.v7MacAddress, onStatus: onStatus, completion: completion)
-
-            case .failure(let error):
-                // Mirrors Android's `validateDevice` returning null.
+        // Tokens are short-lived, so renew before the lookup if the current one
+        // has expired and credentials from `login` are available.
+        AuthService.ensureValidSession { ready in
+            guard ready else {
                 deliver(LockActionResult(code: "100",
-                                         message: error.localizedDescription,
+                                         message: AuthError.rejected("Session expired — log in again").localizedDescription,
                                          type: type),
                         completion)
+                return
+            }
+
+            onStatus?("Fetching lock details…")
+            LockInfoService.fetchLockInfo(lockId: lockId) { result in
+                switch result {
+                case .success(let info):
+                    // Android: for V7 actions `MACID = LockCode` (SafeLock.java:223-253).
+                    perform(action, macId: info.v7MacAddress, onStatus: onStatus, completion: completion)
+
+                case .failure(let error):
+                    // Mirrors Android's `validateDevice` returning null.
+                    deliver(LockActionResult(code: "100",
+                                             message: error.localizedDescription,
+                                             type: type),
+                            completion)
+                }
             }
         }
     }
@@ -170,11 +232,13 @@ public enum SafeobuddyV7 {
         let type = action.type
 
         // Android: `if (!CommonMethods.isValidString(macID))` -> "100 Invalid device info"
-        guard PacketBuilder.normalizedMacBytes(macId) != nil else {
+        guard let packet = PacketBuilder.buildLockPacket(macAddress: macId, isLock: isLock) else {
             deliver(LockActionResult(code: "100", message: "Invalid device info", type: type),
                     completion)
             return
         }
+        let packetHex = PacketBuilder.bytesToHex(packet)
+        onStatus?("Command packet: \(packetHex)")
 
         manager.openLock(macAddress: macId, isLock: isLock, onStatus: onStatus) { result in
             switch result {
@@ -183,7 +247,7 @@ public enum SafeobuddyV7 {
                 deliver(LockActionResult(
                     code: "106",
                     message: isLock ? "Device is locked successfully." : "Lock opened successfully.",
-                    type: type
+                    type: type, macId: macId, packetHex: packetHex
                 ), completion)
 
             case .failure:
@@ -191,10 +255,26 @@ public enum SafeobuddyV7 {
                 deliver(LockActionResult(
                     code: isLock ? "100" : "102",
                     message: isLock ? "Failed to lock the device." : "failed to open the lock.",
-                    type: type
+                    type: type, macId: macId, packetHex: packetHex
                 ), completion)
             }
         }
+    }
+
+    // MARK: - Packet inspection
+
+    /// Returns the exact bytes that ``manualLockAction(lockId:type:onStatus:completion:)``
+    /// will write to the lock, without connecting to anything.
+    ///
+    /// Useful for verifying against the Android SDK's output, and for logging.
+    ///
+    /// - Returns: spaced hex, e.g. `"e8 94 9a 62 32 dc 55"`, or `nil` if the MAC
+    ///   is not valid.
+    public static func commandPacket(macId: String, type: Int) -> String? {
+        guard let action = Action(rawValue: type),
+              let packet = PacketBuilder.buildLockPacket(macAddress: macId, isLock: action.isLock)
+        else { return nil }
+        return PacketBuilder.bytesToHex(packet)
     }
 
     private static func deliver(_ result: LockActionResult,
