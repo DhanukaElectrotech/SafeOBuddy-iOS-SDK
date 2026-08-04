@@ -101,6 +101,11 @@ public enum AuthService {
     public static func login(username: String,
                              password: String,
                              completion: @escaping (Result<SafeobuddySession, AuthError>) -> Void) {
+        // Trim: text fields commonly deliver a trailing space, which the server
+        // rejects with no visible difference in the UI.
+        let username = username.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = password.trimmingCharacters(in: .whitespacesAndNewlines)
+
         guard !username.isEmpty, !password.isEmpty else {
             completion(.failure(.missingCredentials)); return
         }
@@ -136,7 +141,14 @@ public enum AuthService {
 
             let userId = string(row["uid"])
             let token = string(row["token"])
-            let message = string(row["returnmessage"])
+
+            // A rejected login has no `loginvalidation` array at all — the reason
+            // arrives as `message` on the root object, e.g.
+            //   {"success":"0","message":"Please Check UserId or Password !!!"}
+            // A successful one carries `returnmessage` inside the row. Read both,
+            // so the server's own wording always reaches the caller.
+            let message = [string(row["returnmessage"]), string(root["message"])]
+                .first(where: { !$0.isEmpty }) ?? ""
 
             // Android treats uid "" or "0" as a failed login.
             guard !userId.isEmpty, userId != "0", !token.isEmpty else {
