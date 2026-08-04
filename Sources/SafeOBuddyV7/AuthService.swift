@@ -61,9 +61,19 @@ public enum AuthService {
 
     /// Same host the rest of the SDK uses.
     public static var baseURL = URL(string: "https://vehicletrack.membocool.com/ConService.aspx")!
-    /// `version` query parameter, as sent by the framework.
+    /// `version` query parameter, as sent by the framework. The endpoint accepts
+    /// the request with or without it.
     public static var appVersion = "3.7"
     public static var timeout: TimeInterval = 20
+
+    /// Prints the exact request URL and the raw response body to the console.
+    ///
+    /// Turn this on when a login is rejected but the same credentials succeed in
+    /// curl or Postman — it shows precisely what the app sent, including any
+    /// stray whitespace or capitalisation introduced by a text field.
+    ///
+    /// Leave it off in release builds: the request URL contains the password.
+    public static var debugLogging = false
 
     /// The session captured by the most recent successful login.
     public private(set) static var session: SafeobuddySession?
@@ -124,8 +134,21 @@ public enum AuthService {
 
         var request = URLRequest(url: url, timeoutInterval: timeout)
         request.httpMethod = "GET"
+        // Do not let a cached response stand in for a fresh login.
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
-        URLSession.shared.dataTask(with: request) { data, _, error in
+        if debugLogging {
+            print("[SafeobuddyV7] username: [\(username)]  password: [\(password)]")
+            print("[SafeobuddyV7] GET \(url.absoluteString)")
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if debugLogging {
+                let status = (response as? HTTPURLResponse)?.statusCode ?? -1
+                let body = data.flatMap { String(data: $0, encoding: .utf8) } ?? "<no body>"
+                print("[SafeobuddyV7] HTTP \(status)")
+                print("[SafeobuddyV7] body: \(body)")
+            }
             if let error = error {
                 completion(.failure(.network(error))); return
             }
